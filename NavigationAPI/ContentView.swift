@@ -7,15 +7,27 @@
 
 import SwiftUI
 
+
+
+
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        
+        NavigationStack {
+            VStack {
+                NavigationLink("Detail View", value: 99)
+                NavigationLink("Customer View", value: "John Doe")
+            }
+                .navigationDestination(for: Int.self) { value in
+                    DetailViewInt(value: value)
+                }
+                .navigationDestination(for: String.self) { value in
+                    DetailViewString(value: value)
+            }
         }
-        .padding()
+        
+        
     }
 }
 
@@ -24,3 +36,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
